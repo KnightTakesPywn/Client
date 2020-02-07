@@ -2,7 +2,7 @@
 
 | | |
 |:-|:-|
-| *Authors:*      | Chris Cedar, Chris Stanely, Travis Williams, Aaron Imbrock |
+| *Authors:*      | Chris Ceder, Chris Stanely, Travis Williams, Aaron Imbrock |
 | *Create Date:* | 02/07/2020    |
 | *Language:*    | Python 3.8    |
 | *Other technologies used:*    | WebSockets, Dango 3 ASGI, Material-UI, React |
