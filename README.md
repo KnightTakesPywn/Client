@@ -26,6 +26,10 @@ React, django asgi, material-ui, websocket based online Chess Game allowing two 
 - Better game/site security
 - In game chat
 
-## Wireframe
+## UI Wireframe
 
-![whiteboard](./assets/ChessWireFrame.png)
+![UI Wireframe](./assets/ChessWireFrame.png)
+
+## Domain Model
+
+![Domain Model](./assets/DomainModelChess.png)
