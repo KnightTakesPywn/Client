@@ -9,6 +9,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+// followed tutorial from https://material-ui.com/getting-started/example-projects/, put in my code to make
+// the way I wanted it to.
+
+
 function CopyRight(){
     return (
         <Typography variant='body2' color='textSecondary' align='center'>
