@@ -26,6 +26,9 @@ React, django asgi, material-ui, websocket based online Chess Game allowing two 
 - Better game/site security
 - In game chat
 
+## Trello
+[Trello Board](https://trello.com/b/5yd89CJq/online-chess)
+
 ## UI Wireframe
 
 ![UI Wireframe](./assets/ChessWireFrame.png)
