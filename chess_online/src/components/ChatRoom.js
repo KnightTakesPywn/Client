@@ -33,6 +33,7 @@ class ChatRoom extends Component {
 
   sendMessage () {
     chatSocket.send(JSON.stringify({
+      'type': 'message',
       'message': this.state.message,
       'user':'React Client'
     }));
