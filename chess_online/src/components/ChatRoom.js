@@ -10,8 +10,8 @@ class ChatRoom extends Component {
     this.state = {
       chatLog:[],
       message:'',
+      username: this.props.username
     };
-    
     this.formChange = this.formChange.bind(this)
     this.sendMessage = this.sendMessage.bind(this)
 
@@ -19,12 +19,15 @@ class ChatRoom extends Component {
   
   componentDidMount () {
 
-    this.chatSocket.onopen = () => {
-      // on connecting, do nothing but log it to the console
-      console.log('connected')
+    chatSocket.onopen = (e) => {
+      console.log(this.state.username)
+      chatSocket.send(JSON.stringify({
+        'type' : 'newUser',
+        'user' : this.state.username
+      }))
     }
 
-    this.chatSocket.onmessage = (e) => {
+    chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
       // var message = data['message'];
       var history = data['history'];
