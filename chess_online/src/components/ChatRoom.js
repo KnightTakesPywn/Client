@@ -8,13 +8,22 @@ class ChatRoom extends Component {
     this.state = {
       chatLog:[],
       message:'',
+      username: this.props.username
     };
+    console.log(this.props.username)
 
     this.formChange = this.formChange.bind(this)
     this.sendMessage = this.sendMessage.bind(this)
   }
 
   componentWillMount () {
+    chatSocket.onopen = (e) => {
+      console.log(this.state.username)
+      chatSocket.send(JSON.stringify({
+        'type' : 'newUser',
+        'user' : this.state.username
+      }))
+    }
     chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
       // var message = data['message'];
