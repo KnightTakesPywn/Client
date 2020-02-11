@@ -20,7 +20,6 @@ class ChatRoom extends Component {
   
   componentDidMount () {
 
-  componentWillMount () {
     chatSocket.onopen = (e) => {
       console.log(this.state.username)
       chatSocket.send(JSON.stringify({
@@ -28,6 +27,7 @@ class ChatRoom extends Component {
         'user' : this.state.username
       }))
     }
+
     chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
       // var message = data['message'];
