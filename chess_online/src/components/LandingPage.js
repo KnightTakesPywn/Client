@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { Redirect } from 'react-router-dom';
 
 // followed tutorial from https://material-ui.com/getting-started/example-projects/, put in my code to make
 // the way I wanted it to.
@@ -52,7 +53,8 @@ class LandingPageForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            username : ''
+            username : '',
+            submitted : false
         }
     }
 
@@ -63,11 +65,15 @@ class LandingPageForm extends React.Component{
         event.preventDefault();
         const data = { 'username' : this.state.username }
         this.props.onSubmit(data)
-        console.log(data)
+        this.setState({ submitted : true })
+        
     }
     
     render(){
         const { classes } = this.props;
+        if (this.state.submitted){
+            return <Redirect to='/chat' />
+        }
         return (
             <Grid container component='main' className={classes.root}>
                 <CssBaseline />
