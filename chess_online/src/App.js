@@ -31,7 +31,7 @@ class App extends React.Component{
               <LandingPageForm onSubmit={this.playerHandlerLogin}  />
             </Route>
             <Route exact path='/chat'>
-              <ChatRoom />
+              <ChatRoom username={this.state.username}/>
             </Route>
           </Switch>
         </div>
