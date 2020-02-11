@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router, Switch, Route, Redirect 
 } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
+import ChatRoom from './components/ChatRoom'
 
 
 class App extends React.Component{
@@ -15,6 +15,9 @@ class App extends React.Component{
           <Switch>
             <Route exact path='/'>
               <LandingPage />
+            </Route>
+            <Route exact path='/chat'>
+              <ChatRoom />
             </Route>
           </Switch>
         </div>
