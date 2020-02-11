@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 
-const chatSocket = new WebSocket('ws://127.0.0.1:8000/ws/chat/1/');
 
 class ChatRoom extends Component {
+  
+  chatSocket = new WebSocket('ws://127.0.0.1:8000/ws/chat/1/');
+  
   constructor (props) {
     super(props)
     this.state = {
@@ -10,13 +12,13 @@ class ChatRoom extends Component {
       message:'',
       username: this.props.username
     };
-    console.log(this.props.username)
-
     this.formChange = this.formChange.bind(this)
     this.sendMessage = this.sendMessage.bind(this)
-  }
 
-  componentWillMount () {
+  }
+  
+  componentDidMount () {
+
     chatSocket.onopen = (e) => {
       console.log(this.state.username)
       chatSocket.send(JSON.stringify({
@@ -24,6 +26,7 @@ class ChatRoom extends Component {
         'user' : this.state.username
       }))
     }
+
     chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
       // var message = data['message'];
@@ -34,14 +37,13 @@ class ChatRoom extends Component {
       })
     };
 
-    chatSocket.onclose = function(e) {
+    this.chatSocket.onclose = function(e) {
       console.error('Chat socket closed unexpectedly');
     };
-
   }
 
   sendMessage () {
-    chatSocket.send(JSON.stringify({
+    this.chatSocket.send(JSON.stringify({
       'type': 'message',
       'message': this.state.message,
       'user':'React Client'
