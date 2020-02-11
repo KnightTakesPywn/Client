@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 
 const chatSocket = new WebSocket('ws://127.0.0.1:8000/ws/chat/1/');
 
-
-
 class ChatRoom extends Component {
   constructor (props) {
     super(props)
@@ -31,9 +29,7 @@ class ChatRoom extends Component {
       console.error('Chat socket closed unexpectedly');
     };
 
-
   }
-
 
   sendMessage () {
     chatSocket.send(JSON.stringify({
