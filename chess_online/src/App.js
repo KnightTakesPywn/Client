@@ -30,9 +30,6 @@ class App extends React.Component{
             <Route exact path='/'>
               <LandingPageForm onSubmit={this.playerHandlerLogin}  />
             </Route>
-            <Route>
-              
-            </Route>
             <Route exact path='/chat'>
               <ChatRoom />
             </Route>

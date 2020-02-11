@@ -1,21 +1,30 @@
 import React, {Component} from 'react';
 
-const chatSocket = new WebSocket('ws://127.0.0.1:8000/ws/chat/1/');
 
 class ChatRoom extends Component {
+  
+  chatSocket = new WebSocket('ws://127.0.0.1:8000/ws/chat/1/');
+  
   constructor (props) {
     super(props)
     this.state = {
       chatLog:[],
       message:'',
     };
-
+    
     this.formChange = this.formChange.bind(this)
     this.sendMessage = this.sendMessage.bind(this)
-  }
 
-  componentWillMount () {
-    chatSocket.onmessage = (e) => {
+  }
+  
+  componentDidMount () {
+
+    this.chatSocket.onopen = () => {
+      // on connecting, do nothing but log it to the console
+      console.log('connected')
+    }
+
+    this.chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
       // var message = data['message'];
       var history = data['history'];
@@ -25,14 +34,13 @@ class ChatRoom extends Component {
       })
     };
 
-    chatSocket.onclose = function(e) {
+    this.chatSocket.onclose = function(e) {
       console.error('Chat socket closed unexpectedly');
     };
-
   }
 
   sendMessage () {
-    chatSocket.send(JSON.stringify({
+    this.chatSocket.send(JSON.stringify({
       'type': 'message',
       'message': this.state.message,
       'user':'React Client'
