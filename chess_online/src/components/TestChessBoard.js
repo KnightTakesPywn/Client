@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import ChessBoard from "./ChessBoard";
 
 class BoardSocket extends Component {
 
@@ -7,9 +8,10 @@ class BoardSocket extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      board: {}
+      board: {gameState:{board:[]}}
     }
   }
+
   componentDidMount () {
 
     this.chatSocket.onopen = (e) => {
@@ -18,7 +20,9 @@ class BoardSocket extends Component {
 
     this.chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
-      console.log(data)
+      
+      this.setState({board: data})
+      console.log('State:', this.state.board)
     };
 
     this.chatSocket.onclose = function(e) {
@@ -37,7 +41,10 @@ class BoardSocket extends Component {
 
   render () {
     return (
+      <div>
       <button onClick={this.getBoard}>Get Board</button>
+      <ChessBoard data={this.state.board}/>
+      </div>
     )
   }
 }
