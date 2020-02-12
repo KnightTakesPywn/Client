@@ -75,8 +75,8 @@ function renderRow(row, index) {
           x_loc={x_loc}
           y_loc={y_loc}
           square_color={square_color}
-          chesspiece='None'
-          pieceColor='None'
+          chesspiece=''
+          pieceColor=''
         />
       }
     })}
@@ -90,7 +90,7 @@ function Square(props) {
   */
   
   return (
-    <div className={props.square_color + " square"}>
+    <div className={props.square_color + " square"} id={props.x_loc + props.y_loc}>
       {/* DANGER: need to only render piece if piece exists */}
       <div>Square: {props.x_loc},{props.y_loc}</div>
       {props.chesspiece && (
