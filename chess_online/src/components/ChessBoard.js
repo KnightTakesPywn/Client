@@ -22,7 +22,7 @@ class ChessBoard extends Component {
     } else {
       
       return (
-        <div id="board">{board.map( (row, index) => renderRow(row, index))}</div>
+        <div id="board">{board.map( (row, index) => renderRow(row, index, this.props.clicked))}</div>
       );
     }
   }
@@ -34,7 +34,7 @@ class ChessBoard extends Component {
     //   return <div className="App">{board.map(row => renderRow(row))}</div>;
     // }
     // { "name": "BR", "type": "rook", "color": "black", "pos_row": 0, "pos_col": 0, "image": "url" },
-function renderRow(row, index) {
+function renderRow(row, index, clicked) {
   console.log('Row:', row);
   let x_loc = index
     
@@ -49,6 +49,8 @@ function renderRow(row, index) {
       square_color={square_color}
       chesspiece={square.type}
       pieceColor={square.color}
+      clicked={clicked}
+
       />
     } else {
       return <Square 
@@ -57,6 +59,7 @@ function renderRow(row, index) {
       square_color={square_color}
       chesspiece=''
       pieceColor=''
+      clicked={clicked}
       />
       }
     })}
@@ -69,7 +72,7 @@ function Square(props) {
   If piece then render Piece as well
   */
   return (
-    <div className={props.square_color + " square"} id={`${props.x_loc}${props.y_loc}`}>
+    <div className={props.square_color + " square"} id={`${props.x_loc}${props.y_loc}`} onClick={props.clicked}>
      {/* DANGER: need to only render piece if piece exists */}
       <div>{props.x_loc},{props.y_loc}</div>
       {props.chesspiece && (
