@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-// import Link from '@material-ui/core/Link';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -109,8 +109,10 @@ class LandingPageForm extends React.Component{
                             <Box mt={5}>
                                 <CopyRight />
                             </Box>
-
                         </form>
+                        <Link href='/aboutUs' variant='body2'>
+                            About the Dev's
+                        </Link>
                     </div>
                 </Grid>
             </Grid>

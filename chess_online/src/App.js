@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import ChatRoom from './components/ChatRoom'
 import LandingPageForm from './components/LandingPage';
+import AboutUs from './components/AboutUs'
 
 const url = 'http://localhost:8000/'
 
@@ -33,6 +34,9 @@ class App extends React.Component{
     
             <Route exact path='/chat'>
               <ChatRoom username={this.state.username}/>
+            </Route>
+            <Route exact path='/aboutUs'>
+              <AboutUs />
             </Route>
           </Switch>
         </div>
