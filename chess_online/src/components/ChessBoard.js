@@ -7,39 +7,45 @@ export default class ChessBoard extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      board: []
+      board: props.data.gameState.board,
     };
+    if (props.data !== {}) {
+      this.setState({
+        isLoaded: true,
+        // board: props.data.gameState.board,
+      })
+    }
   }
 
-  componentDidMount() {
-    fetch("http://www.mocky.io/v2/5e4337d22f0000270087fb87")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          // console.log(result.board)
-          this.setState({
-            isLoaded: true,
-            board: result.board
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
-  }
+  // componentDidMount() {
+  //   fetch("http://www.mocky.io/v2/5e4337d22f0000270087fb87")
+  //     .then(res => res.json())
+  //     .then(
+  //       (result) => {
+  //         // console.log(result.board)
+  //         this.setState({
+  //           isLoaded: true,
+  //           board: result.board
+  //         });
+  //       },
+  //       // Note: it's important to handle errors here
+  //       // instead of a catch() block so that we don't swallow
+  //       // exceptions from actual bugs in components.
+  //       (error) => {
+  //         this.setState({
+  //           isLoaded: true,
+  //           error
+  //         });
+  //       }
+  //     )
+  // }
 
   render() {
     const { error, isLoaded, board } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
+    // } else if (!isLoaded) {
+    //   return <div>Loading...</div>;
     } else {
       console.log('Render', board)
       return (
@@ -61,7 +67,7 @@ function renderRow(row, index) {
   return (<>
     { row.map( (square, index) => {
       let y_loc = index
-      let square_color = (y_loc + x_loc) % 2 == 0 ? 'white' : 'black'
+      let square_color = (y_loc + x_loc) % 2 === 0 ? 'white' : 'black'
       if (square !== null) { 
         return <Square
           x_loc={x_loc}
