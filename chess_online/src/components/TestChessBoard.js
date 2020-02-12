@@ -8,7 +8,8 @@ class BoardSocket extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      board: {board:[]}
+      board: {board:[]},
+    coordinates: null,
     }
   }
 
@@ -31,8 +32,27 @@ class BoardSocket extends Component {
   }
 
   square_click = (e) => {
-    console.log(e.target)
+    e.preventDefault()
+    const click_coord_string = e.target.id
+    const click_coordinates = click_coord_string.split('')
+    let convertedCoordinates = click_coordinates.map( val => { return parseInt(val) })
+    this.save_send_coordinates(convertedCoordinates)
+    console.log('click_coordinates:', convertedCoordinates)
+  }
+
+  save_send_coordinates = (coordinates) => {
+    if (this.state.coordinates === null) {
+      this.setState({coordinates: coordinates})
+    } else {
+      console.log('Sending coordinates:', this.state.coordinates, coordinates)
+      this.chatSocket.send(JSON.stringify({
+        'type': 'move',
+        'start': this.state.coordinates,
+        'end': coordinates,
+      }))
+      this.setState({coordinates: null})
     }
+  }
 
   getBoard = (e) => {
     e.preventDefault()

@@ -35,7 +35,7 @@ class ChessBoard extends Component {
     // }
     // { "name": "BR", "type": "rook", "color": "black", "pos_row": 0, "pos_col": 0, "image": "url" },
 function renderRow(row, index, clicked) {
-  console.log('Row:', row);
+  // console.log('Row:', row);
   let x_loc = index
     
   return (<>
@@ -74,7 +74,6 @@ function Square(props) {
   return (
     <div className={props.square_color + " square"} id={`${props.x_loc}${props.y_loc}`} onClick={props.clicked}>
      {/* DANGER: need to only render piece if piece exists */}
-      <div>{props.x_loc},{props.y_loc}</div>
       {props.chesspiece && (
         <Piece rank={props.chesspiece} color={props.pieceColor} />
       )}
@@ -99,7 +98,7 @@ function Piece(props) {
   }
 
   // {`${props.x_loc}${props.y_loc}`}
-  console.log(`props.color:' ${props.color}_${props.rank}`)
+  // console.log(`props.color:' ${props.color}_${props.rank}`)
   return (
     <p>
       {chess_pieces[`${props.color}_${props.rank}`]}
