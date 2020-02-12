@@ -5,7 +5,7 @@ class ChessBoard extends Component {
   
   constructor(props) {
     super(props);
-    const board = props.data.gameState.board
+    const board = props.data.board
     console.log("props:", board)
     this.state = {
       error: null,
@@ -17,7 +17,7 @@ class ChessBoard extends Component {
 
   render() {
     // const { error, isLoaded, board } = this.state;
-    const board = this.props.data.gameState.board
+    const board = this.props.data.board
     if (false) {
       return <div>Error: {}</div>;
       // } else if (!isLoaded) {
