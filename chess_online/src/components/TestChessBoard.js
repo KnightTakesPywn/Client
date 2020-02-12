@@ -8,7 +8,7 @@ class BoardSocket extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      board: {gameState:{board:[]}}
+      board: {board:[]}
     }
   }
 
