@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router, Switch, Route, Redirect 
 } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
-import ChatRoom from './components/ChatRoom'
+import ChatRoom from './components/ChatRoom';
+import GamePage from './components/GamePage';
 
 
 class App extends React.Component{
@@ -19,6 +20,10 @@ class App extends React.Component{
             <Route exact path='/chat'>
               <ChatRoom />
             </Route>
+            <Route exact path='/gamepage'>
+              <GamePage />
+            </Route>
+
           </Switch>
         </div>
       </Router>
