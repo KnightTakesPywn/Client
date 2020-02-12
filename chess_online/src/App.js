@@ -2,7 +2,9 @@ import React from 'react';
 import {
   BrowserRouter as Router, Switch, Route, Redirect 
 } from 'react-router-dom';
-import ChatRoom from './components/ChatRoom'
+
+import ChatRoom from './components/ChatRoom';
+import GamePage from './components/GamePage';
 import TestChessBoard from './components/TestChessBoard'
 import LandingPageForm from './components/LandingPage';
 
@@ -37,6 +39,10 @@ class App extends React.Component{
             <Route exact path='/chess'>
               <TestChessBoard room={1} username={this.state.username}/>
             </Route>
+            <Route exact path='/gamepage'>
+              <GamePage />
+            </Route>
+
           </Switch>
         </div>
       </Router>
