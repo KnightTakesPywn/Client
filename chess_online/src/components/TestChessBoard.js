@@ -30,6 +30,10 @@ class BoardSocket extends Component {
     };
   }
 
+  square_click = (e) => {
+    console.log(e.target)
+    }
+
   getBoard = (e) => {
     e.preventDefault()
     this.chatSocket.send(JSON.stringify({
@@ -43,7 +47,7 @@ class BoardSocket extends Component {
     return (
       <div>
       <button onClick={this.getBoard}>Get Board</button>
-      <ChessBoard data={this.state.board}/>
+      <ChessBoard data={this.state.board} clicked={this.square_click}/>
       </div>
     )
   }
