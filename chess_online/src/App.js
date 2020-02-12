@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router, Switch, Route, Redirect 
 } from 'react-router-dom';
 import ChatRoom from './components/ChatRoom'
+import TestChessBoard from './components/TestChessBoard'
 import LandingPageForm from './components/LandingPage';
 
 const url = 'http://localhost:8000/'
@@ -31,7 +32,10 @@ class App extends React.Component{
               <LandingPageForm onSubmit={this.playerHandlerLogin}  />
             </Route>
             <Route exact path='/chat'>
-              <ChatRoom username={this.state.username}/>
+              <ChatRoom room={1} username={this.state.username}/>
+            </Route>
+            <Route exact path='/chess'>
+              <TestChessBoard room={1} username={this.state.username}/>
             </Route>
           </Switch>
         </div>
