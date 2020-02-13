@@ -15,18 +15,13 @@ class ChessBoard extends Component {
   render() {
     // const { error, isLoaded, board } = this.state;
     const board = this.props.data.board
-    if (false) {
-      return <div>Error: {}</div>;
-      // } else if (!isLoaded) {
-      //   return <div>Loading...</div>;
-    } else {
-      
-      return (
-        <div id="board">{board.map( (row, index) => renderRow(row, index, this.props.clicked))}</div>
-      );
-    }
+    
+    return (
+      <div id="board">{board.map( (row, index) => renderRow(row, index, this.props.clicked))}</div>
+    );
   }
 }
+
 
 
 
