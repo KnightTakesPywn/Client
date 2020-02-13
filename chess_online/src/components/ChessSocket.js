@@ -36,6 +36,7 @@ class BoardSocket extends Component {
   square_click = (e) => {
     e.preventDefault()
     const click_coord_string = e.target.id
+    console.log(e)
     const click_coordinates = click_coord_string.split('')
     let convertedCoordinates = click_coordinates.map( val => { return parseInt(val) })
     this.save_send_coordinates(convertedCoordinates)
@@ -56,20 +57,10 @@ class BoardSocket extends Component {
     }
   }
 
-  getBoard = (e) => {
-    e.preventDefault()
-    this.chatSocket.send(JSON.stringify({
-      'type': 'message',
-      'message': this.state.message,
-      'user':'React Client'
-    }));
-  }
-
   render () {
     return (
       <div>
-      <button onClick={this.getBoard}>Get Board</button>
-      <ChessBoard data={this.state.board} clicked={this.square_click}/>
+        <ChessBoard data={this.state.board} clicked={this.square_click}/>
       </div>
     )
   }

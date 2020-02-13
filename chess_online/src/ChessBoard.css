@@ -3,17 +3,24 @@
     text-align: center;
   }
   
+#board {
+  display: inline-grid;
+  grid-template-columns: repeat(8, 5vw);
+  grid-template-rows: repeat(8, 5vw);
+}
   .App .square {
-    width: 12%;
-    height: 80px;
     box-sizing: border-box;
-    float: left;
+    /* float: left; */
   }
   .white {
     background-color: beige;
   }
   
   .black {
-    background-color: blue;
+    background-color: grey;
   }
   
+  img {
+    height: 100%;
+    width: 100%;
+  }
