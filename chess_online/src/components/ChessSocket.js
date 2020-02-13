@@ -22,7 +22,7 @@ class BoardSocket extends Component {
 
     this.chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
-      if (data.type == 'gameState') {
+      if (data.type === 'gameState') {
         this.setState({board: data, turn: data.turn})
         console.log('State:', this.state.board)
       }
@@ -81,11 +81,13 @@ class BoardSocket extends Component {
   }
 
   render () {
+    let piece = this.state.turn === 'white' ? 'ChessPieces/WK.png': 'ChessPieces/BK.png'
+    console.log(piece)
     return (
       <div id="gameSpace">
         <div id="gameState">
           <h2>Player 1</h2>
-          <h2>{this.state.turn}</h2>
+          <img src={piece} id="turn" alt=''/>
           <h2>Player 2</h2>
         </div>
         <ChessBoard data={this.state.board} clicked={this.square_click}/>

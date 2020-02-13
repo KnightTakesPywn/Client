@@ -21,12 +21,15 @@
 }
 
 #chat-log {
+  font-size: 2vh;
   grid-row: 2 / 3;
   width: 95%;
   height: 100%;
 }
 
 #message-form {
+  font-size: 2vh;
+  height: 50px; 
   align-self: center;
   grid-row: 3 / 4;
   width: 100%;
