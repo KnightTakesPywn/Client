@@ -69,11 +69,9 @@ class ChatRoom extends Component {
     log = log.join('\n')
     return (
       <div id="chat-box">
-        <textarea id="Connected Users" cols="100" rows="2" value={[]} readOnly ></textarea><br/>
-        <textarea id="chat-log" cols="100" rows="20" value={log} readOnly></textarea><br/>
-        <form>
-          <input id="chat-message-input" type="text" size="100" value={this.state.message} onChange={this.formChange}/><br/>
-          {/* <input id="chat-message-submit" type="button" value="Send" onClick={this.sendMessage}/> */}
+        <textarea id="chat-log" value={log} readOnly></textarea>
+        <form id="message-form">
+          <input id="chat-message-input" type="text" value={this.state.message} onChange={this.formChange}/>
           <button onClick={this.sendMessage}>Send</button>
         </form>  
       </div>

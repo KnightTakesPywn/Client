@@ -1,26 +1,32 @@
 .App {
-    font-family: sans-serif;
-    text-align: center;
-  }
-  
-#board {
-  display: inline-grid;
-  grid-template-columns: repeat(8, 5vw);
-  grid-template-rows: repeat(8, 5vw);
+  font-family: sans-serif;
+  text-align: center;
 }
-  .App .square {
-    box-sizing: border-box;
-    /* float: left; */
-  }
-  .white {
-    background-color: beige;
-  }
-  
-  .black {
-    background-color: grey;
-  }
-  
-  img {
-    height: 100%;
-    width: 100%;
-  }
+
+#board {
+  justify-self: center;
+  display: inline-grid;
+  max-height: 885px;
+  max-width: 850px;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+}
+.App .square {
+  box-sizing: border-box;
+}
+.beige {
+  background-color: beige;
+}
+
+.grey {
+  background-color: grey;
+}
+
+.highlight {
+  background-color: teal;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+}

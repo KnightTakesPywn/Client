@@ -1,8 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import BoardSocket from "./ChessSocket";
 import ChatRoom from "./ChatRoom"
-
+import "../../src/gamePage.css";
 
 export default (props) => {
   return (

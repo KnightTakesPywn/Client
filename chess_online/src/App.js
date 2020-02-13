@@ -17,16 +17,19 @@ class App extends React.Component{
     super(props);
     this.state = {
       username : '',
+      room: 1
     }
   }
 
   playerHandlerLogin = data => {
     this.setState({
-      username : data.username
+      username : data.username,
+      room: data.room
     })
   }
 
   render(){
+    console.log(this.state.room)
     return (
       <Router>
         <div className= 'App'>
@@ -35,16 +38,16 @@ class App extends React.Component{
               <LandingPageForm onSubmit={this.playerHandlerLogin}  />
             </Route>
             <Route exact path='/chat'>
-              <ChatRoom room={1} username={this.state.username}/>
+              <ChatRoom room={this.state.room} username={this.state.username}/>
             </Route>
             <Route exact path='/chess'>
-              <TestChessBoard room={1} username={this.state.username}/>
+              <TestChessBoard room={this.state.room} username={this.state.username}/>
             </Route>
             <Route exact path='/aboutUs'>
               <AboutUs />
             </Route>
             <Route exact path='/game'>
-              <GamePage room={1} username={this.state.username}/>
+              <GamePage room={this.state.room } username={this.state.username}/>
             </Route>
           </Switch>
         </div>

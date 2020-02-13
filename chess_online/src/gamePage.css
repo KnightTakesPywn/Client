@@ -1,0 +1,34 @@
+#gamePage {
+  margin-top: 2vw;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+#gameSpace {
+  grid-column: 1 / 2;
+  max-height: 880px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr;
+}
+
+#chat-box {
+  height: inherit;
+  display: grid;
+  padding: 0px 10px 0px 10px;
+  grid-template-rows: 13fr 5fr 2fr;
+}
+
+#chat-log {
+  grid-row: 2 / 3;
+  width: 95%;
+  height: 100%;
+}
+
+#message-form {
+  align-self: center;
+  grid-row: 3 / 4;
+  width: 100%;
+}
+
