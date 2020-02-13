@@ -9,7 +9,7 @@ class BoardSocket extends Component {
     super(props)
     this.state = {
       board: {board:[]},
-    coordinates: null,
+      coordinates: null,
     }
   }
 

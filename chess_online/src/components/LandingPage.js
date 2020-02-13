@@ -72,7 +72,7 @@ class LandingPageForm extends React.Component{
     render(){
         const { classes } = this.props;
         if (this.state.submitted){
-            return <Redirect to='/chat' />
+            return <Redirect to='/game' />
         }
         return (
             <Grid container component='main' className={classes.root}>
