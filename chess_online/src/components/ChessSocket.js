@@ -21,9 +21,11 @@ class BoardSocket extends Component {
 
     this.chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
+      if (data.type == 'gameState') {
+        this.setState({board: data})
+        console.log('State:', this.state.board)
+      }
       
-      this.setState({board: data})
-      // console.log('State:', this.state.board)
     };
 
     this.chatSocket.onclose = function(e) {
