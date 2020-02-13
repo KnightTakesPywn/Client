@@ -5,7 +5,7 @@ import {
 
 import ChatRoom from './components/ChatRoom';
 import GamePage from './components/GamePage';
-import TestChessBoard from './components/TestChessBoard'
+import TestChessBoard from './components/ChessSocket'
 import LandingPageForm from './components/LandingPage';
 import AboutUs from './components/AboutUs'
 
@@ -40,14 +40,12 @@ class App extends React.Component{
             <Route exact path='/chess'>
               <TestChessBoard room={1} username={this.state.username}/>
             </Route>
-
             <Route exact path='/aboutUs'>
               <AboutUs />
             </Route>
-            <Route exact path='/gamepage'>
-              <GamePage />
+            <Route exact path='/game'>
+              <GamePage room={1} username={this.state.username}/>
             </Route>
-
           </Switch>
         </div>
       </Router>
