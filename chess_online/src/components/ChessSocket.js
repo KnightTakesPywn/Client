@@ -3,7 +3,7 @@ import ChessBoard from "./ChessBoard";
 
 class BoardSocket extends Component {
 
-  chatSocket = new WebSocket(`ws://127.0.0.1:8000/ws/chess/${this.props.room}/`);
+  chatSocket = new WebSocket(`ws://134.209.46.213:8000/ws/chess/${this.props.room}/`);
   
   constructor (props) {
     super(props)
