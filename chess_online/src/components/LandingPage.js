@@ -54,6 +54,7 @@ class LandingPageForm extends React.Component{
         super(props);
         this.state = {
             username : '',
+            room: 1,
             submitted : false
         }
     }
@@ -63,7 +64,7 @@ class LandingPageForm extends React.Component{
     }
     submitHandler = event => {
         event.preventDefault();
-        const data = { 'username' : this.state.username }
+        const data = { 'username' : this.state.username, 'room': this.state.room }
         this.props.onSubmit(data)
         this.setState({ submitted : true })
         
@@ -89,13 +90,24 @@ class LandingPageForm extends React.Component{
                         </Typography>
                         <form className={classes.form} noValidate onSubmit={this.submitHandler}>
                             <TextField 
+                                required
                                 variant='outlined'
                                 margin='normal'
-                                required
                                 fullWidth
-                                id='name'
+                                id='username'
                                 name='username'
-                                label='player name'
+                                label='Player Name'
+                                onChange={this.changeHandler}>
+                            </TextField>
+                            <TextField 
+                                required
+                                variant='outlined'
+                                margin='normal'
+                                fullWidth
+                                type="number"
+                                id='name'
+                                name='room'
+                                label='Room Number'
                                 onChange={this.changeHandler}>
                             </TextField>
                             <Button 

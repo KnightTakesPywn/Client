@@ -10,6 +10,7 @@ class BoardSocket extends Component {
     this.state = {
       board: {board:[]},
       coordinates: null,
+      turn: 'white',
     }
   }
 
@@ -22,10 +23,9 @@ class BoardSocket extends Component {
     this.chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
       if (data.type == 'gameState') {
-        this.setState({board: data})
+        this.setState({board: data, turn: data.turn})
         console.log('State:', this.state.board)
       }
-      
     };
 
     this.chatSocket.onclose = function(e) {
@@ -35,31 +35,59 @@ class BoardSocket extends Component {
 
   square_click = (e) => {
     e.preventDefault()
-    const click_coord_string = e.target.id
-    console.log(e)
+    let target = e.target
+    const click_coord_string = target.id
     const click_coordinates = click_coord_string.split('')
     let convertedCoordinates = click_coordinates.map( val => { return parseInt(val) })
     this.save_send_coordinates(convertedCoordinates)
     console.log('click_coordinates:', convertedCoordinates)
   }
-
+  
   save_send_coordinates = (coordinates) => {
+    const square = this.state.board.board[coordinates[0]][coordinates[1]]
+
     if (this.state.coordinates === null) {
-      this.setState({coordinates: coordinates})
+      if (square && square.color === this.state.turn) {
+        this.setState({coordinates: coordinates})
+        this.addHighlight(coordinates)
+      }
     } else {
-      console.log('Sending coordinates:', this.state.coordinates, coordinates)
-      this.chatSocket.send(JSON.stringify({
-        'type': 'move',
-        'start': this.state.coordinates,
-        'end': coordinates,
-      }))
-      this.setState({coordinates: null})
+      if (square && square.color === this.state.turn) {
+        this.removeHighlight(this.state.coordinates)
+        this.setState({coordinates: coordinates})
+        this.addHighlight(coordinates)
+      } else {
+        console.log('Sending coordinates:', this.state.coordinates, coordinates)
+        this.chatSocket.send(JSON.stringify({
+          'type': 'move',
+          'start': this.state.coordinates,
+          'end': coordinates,
+        }))
+        this.removeHighlight(this.state.coordinates)
+        this.setState({coordinates: null})
+      }
     }
+  }
+
+  addHighlight(coordinates) {
+    let spot = document.getElementById(coordinates.join(''))
+    spot.setAttribute("class", "highlight");
+  }
+
+  removeHighlight (coordinates) {
+    console.log('Removing')
+    let spot = document.getElementById(coordinates.join(''))
+    spot.setAttribute("class", ['beige square', 'grey square', 'AHHHHH'][(coordinates[0] + coordinates[1]) % 2]);
   }
 
   render () {
     return (
-      <div>
+      <div id="gameSpace">
+        <div id="gameState">
+          <h2>Player 1</h2>
+          <h2>{this.state.turn}</h2>
+          <h2>Player 2</h2>
+        </div>
         <ChessBoard data={this.state.board} clicked={this.square_click}/>
       </div>
     )

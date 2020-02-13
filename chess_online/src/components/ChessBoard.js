@@ -29,7 +29,7 @@ function renderRow(row, index, clicked) {
   return (<>
   { row.map( (square, index) => {
     let y_loc = index
-    let square_color = (y_loc + x_loc) % 2 === 0 ? 'white' : 'black'
+    let square_color = (y_loc + x_loc) % 2 === 0 ? 'beige' : 'grey'
     if (square !== null) { 
       return <Square
       x_loc={x_loc}
@@ -60,13 +60,14 @@ function Square(props) {
   */
   return (
     <div 
-      className={props.square_color + " square"} 
+      className={`${props.square_color} square`}
+      value={props.chesspiece && props.pieceColor}
       id={`${props.x_loc}${props.y_loc}`} 
       onClick={props.clicked}
     >
       {props.chesspiece && 
       (
-        <Piece class={`${props.x_loc}${props.y_loc}`} rank={props.chesspiece} color={props.pieceColor} />
+        <Piece id={`${props.x_loc}${props.y_loc}`} rank={props.chesspiece} color={props.pieceColor} />
       )}
     </div>
   );
@@ -89,7 +90,7 @@ function Piece(props) {
   }
   
   return (
-    <img src={chess_pieces[`${props.color}_${props.rank}`]} id={props.class} />
+    <img src={chess_pieces[`${props.color}_${props.rank}`]} id={props.id} value={props.color}/>
   );
 }
 
