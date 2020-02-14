@@ -30,12 +30,13 @@ class ChatRoom extends Component {
 
     this.chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
-      // var message = data['message'];
       var history = data['history'];
-      console.log(history);
+
       this.setState({
         chatLog:history
       })
+
+      this.scrollBar()
     };
 
     this.chatSocket.onclose = function(e) {
@@ -64,9 +65,18 @@ class ChatRoom extends Component {
     })
   }
 
+  // https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up/18614561
+  scrollBar () {
+    var out = document.getElementById("chat-log");
+    var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 25;
+    if(isScrolledToBottom){
+      out.scrollTop = out.scrollHeight - out.clientHeight;
+    }
+  }
+
   render () {
-    let log = this.state.chatLog
-    log = log.join('\n')
+    let log = this.state.chatLog;
+    log = log.join('\n');
     return (
       <div id="chat-box">
         <textarea id="chat-log" value={log} readOnly></textarea>

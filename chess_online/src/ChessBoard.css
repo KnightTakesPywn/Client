@@ -4,6 +4,8 @@
 }
 
 #board {
+  outline: black 2px solid;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.616);
   justify-self: center;
   display: inline-grid;
   max-height: 885px;
@@ -24,6 +26,11 @@
 
 .highlight {
   background-color: teal;
+}
+
+#turn {
+  height: 8vw;
+  width: 8vw;
 }
 
 img {

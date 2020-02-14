@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router, Switch, Route, Redirect 
+  BrowserRouter as Router, Switch, Route
 } from 'react-router-dom';
 
 import ChatRoom from './components/ChatRoom';
@@ -9,7 +9,6 @@ import TestChessBoard from './components/ChessSocket'
 import LandingPageForm from './components/LandingPage';
 import AboutUs from './components/AboutUs'
 
-const url = 'http://localhost:8000/'
 
 class App extends React.Component{
 

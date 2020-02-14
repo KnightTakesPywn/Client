@@ -90,7 +90,7 @@ function Piece(props) {
   }
   
   return (
-    <img src={chess_pieces[`${props.color}_${props.rank}`]} id={props.id} value={props.color}/>
+    <img src={chess_pieces[`${props.color}_${props.rank}`]} alt='' id={props.id} value={props.color}/>
   );
 }
 
