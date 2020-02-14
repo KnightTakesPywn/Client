@@ -67,6 +67,9 @@ body {
 #message-form > input {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.616);
   width: 96%;
+  font-size: 1vw;
+
+  height: 1.5vw;
 }
 
 #currentRoom {
