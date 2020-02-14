@@ -75,8 +75,8 @@ class ChatRoom extends Component {
   }
 
   render () {
-    let log = this.state.chatLog
-    log = log.join('\n')
+    let log = this.state.chatLog;
+    log = log.join('\n');
     return (
       <div id="chat-box">
         <textarea id="chat-log" value={log} readOnly></textarea>

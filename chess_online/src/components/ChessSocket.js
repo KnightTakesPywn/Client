@@ -82,13 +82,14 @@ class BoardSocket extends Component {
 
   render () {
     let piece = this.state.turn === 'white' ? 'ChessPieces/WK.png': 'ChessPieces/BK.png'
-    console.log(piece)
     return (
       <div id="gameSpace">
         <div id="gameState">
-          <h2>Player 1</h2>
-          <img src={piece} id="turn" alt=''/>
-          <h2>Player 2</h2>
+          <h1 id="currentRoom">Game Room: {this.props.room}</h1>
+          <div id="currentTurn">
+            <h2>Current Turn:</h2>
+            <img src={piece} id="turn" alt=''/>
+          </div>
         </div>
         <ChessBoard data={this.state.board} clicked={this.square_click}/>
       </div>
