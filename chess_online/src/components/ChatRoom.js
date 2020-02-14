@@ -17,7 +17,7 @@ class ChatRoom extends Component {
     
   }
   
-  chatSocket = new WebSocket(`ws://134.209.46.213:8000/ws/chat/${this.props.room}/`);
+  chatSocket = new WebSocket(`ws://167.71.162.123:8000/ws/chat/${this.props.room}/`);
   
   componentDidMount () {
 
