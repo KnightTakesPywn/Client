@@ -9,7 +9,7 @@ class ChatRoom extends Component {
       chatLog:[],
       message:'',
       username: this.props.username,
-      connectedUsers:[]
+      users:[]
     };
     
     this.formChange = this.formChange.bind(this)
@@ -30,13 +30,20 @@ class ChatRoom extends Component {
 
     this.chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
-      var history = data['history'];
-
-      this.setState({
-        chatLog:history
-      })
-
-      this.scrollBar()
+      console.log(data)
+      if (data['type'] === 'message') {
+        var history = data['history'];
+        this.setState({
+          chatLog:history
+        })
+        this.scrollBar()
+      } else if (data['type'] === 'userlist') {
+        const users = data['users'];
+        this.setState({
+          users:users
+        })
+        
+      }
     };
 
     this.chatSocket.onclose = function(e) {
@@ -77,8 +84,14 @@ class ChatRoom extends Component {
   render () {
     let log = this.state.chatLog;
     log = log.join('\n');
+    let users = this.state.users;
+    users = users.join('\n');
     return (
       <div id="chat-box">
+        <div id="userList">
+          <h3>Connected Users</h3>
+          <textarea id="users" value={users} readOnly></textarea>
+        </div>
         <textarea id="chat-log" value={log} readOnly></textarea>
         <form id="message-form">
           <input id="chat-message-input" type="text" value={this.state.message} onChange={this.formChange}/>
