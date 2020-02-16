@@ -1,19 +1,39 @@
 .App {
-    font-family: sans-serif;
-    text-align: center;
-  }
-  
-  .App .square {
-    width: 12%;
-    height: 80px;
-    box-sizing: border-box;
-    float: left;
-  }
-  .white {
-    background-color: beige;
-  }
-  
-  .black {
-    background-color: blue;
-  }
-  
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#board {
+  outline: black 2px solid;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.616);
+  justify-self: center;
+  display: inline-grid;
+  max-height: 830px;
+  max-width: 775px;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+}
+.App .square {
+  box-sizing: border-box;
+}
+.beige {
+  background-color: beige;
+}
+
+.grey {
+  background-color: grey;
+}
+
+.highlight {
+  background-color: teal;
+}
+
+#turn {
+  height: 8vw;
+  width: 8vw;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+}

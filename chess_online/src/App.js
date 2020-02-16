@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router, Switch, Route, Redirect 
+  BrowserRouter as Router, Switch, Route
 } from 'react-router-dom';
 
 import ChatRoom from './components/ChatRoom';
@@ -9,24 +9,26 @@ import TestChessBoard from './components/ChessSocket'
 import LandingPageForm from './components/LandingPage';
 import AboutUs from './components/AboutUs'
 
-const url = 'http://localhost:8000/'
 
 class App extends React.Component{
 
   constructor(props){
     super(props);
     this.state = {
-      username : '',
+      username : 'anonymous',
+      room: 1
     }
   }
 
   playerHandlerLogin = data => {
     this.setState({
-      username : data.username
+      username : data.username,
+      room: data.room
     })
   }
 
   render(){
+    console.log(this.state.room)
     return (
       <Router>
         <div className= 'App'>
@@ -35,16 +37,16 @@ class App extends React.Component{
               <LandingPageForm onSubmit={this.playerHandlerLogin}  />
             </Route>
             <Route exact path='/chat'>
-              <ChatRoom room={1} username={this.state.username}/>
+              <ChatRoom room={this.state.room} username={this.state.username}/>
             </Route>
             <Route exact path='/chess'>
-              <TestChessBoard room={1} username={this.state.username}/>
+              <TestChessBoard room={this.state.room} username={this.state.username}/>
             </Route>
             <Route exact path='/aboutUs'>
               <AboutUs />
             </Route>
             <Route exact path='/game'>
-              <GamePage room={1} username={this.state.username}/>
+              <GamePage room={this.state.room } username={this.state.username}/>
             </Route>
           </Switch>
         </div>

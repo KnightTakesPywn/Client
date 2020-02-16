@@ -9,7 +9,7 @@ class ChatRoom extends Component {
       chatLog:[],
       message:'',
       username: this.props.username,
-      connectedUsers:[]
+      users:[]
     };
     
     this.formChange = this.formChange.bind(this)
@@ -17,7 +17,7 @@ class ChatRoom extends Component {
     
   }
   
-  chatSocket = new WebSocket(`ws://127.0.0.1:8000/ws/chat/${this.props.room}/`);
+  chatSocket = new WebSocket(`ws://167.71.162.123:8000/ws/chat/${this.props.room}/`);
   
   componentDidMount () {
 
@@ -30,12 +30,20 @@ class ChatRoom extends Component {
 
     this.chatSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
-      // var message = data['message'];
-      var history = data['history'];
-      console.log(history);
-      this.setState({
-        chatLog:history
-      })
+      console.log(data)
+      if (data['type'] === 'message') {
+        var history = data['history'];
+        this.setState({
+          chatLog:history
+        })
+        this.scrollBar()
+      } else if (data['type'] === 'userlist') {
+        const users = data['users'];
+        this.setState({
+          users:users
+        })
+        
+      }
     };
 
     this.chatSocket.onclose = function(e) {
@@ -64,16 +72,29 @@ class ChatRoom extends Component {
     })
   }
 
+  // https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up/18614561
+  scrollBar () {
+    var out = document.getElementById("chat-log");
+    var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 25;
+    if(isScrolledToBottom){
+      out.scrollTop = out.scrollHeight - out.clientHeight;
+    }
+  }
+
   render () {
-    let log = this.state.chatLog
-    log = log.join('\n')
+    let log = this.state.chatLog;
+    log = log.join('\n');
+    let users = this.state.users;
+    users = users.join('\n');
     return (
       <div id="chat-box">
-        <textarea id="Connected Users" cols="100" rows="2" value={[]} readOnly ></textarea><br/>
-        <textarea id="chat-log" cols="100" rows="20" value={log} readOnly></textarea><br/>
-        <form>
-          <input id="chat-message-input" type="text" size="100" value={this.state.message} onChange={this.formChange}/><br/>
-          {/* <input id="chat-message-submit" type="button" value="Send" onClick={this.sendMessage}/> */}
+        <div id="userList">
+          <h3>Connected Users</h3>
+          <textarea id="users" value={users} readOnly></textarea>
+        </div>
+        <textarea id="chat-log" value={log} readOnly></textarea>
+        <form id="message-form">
+          <input id="chat-message-input" type="text" value={this.state.message} onChange={this.formChange}/>
           <button onClick={this.sendMessage}>Send</button>
         </form>  
       </div>
